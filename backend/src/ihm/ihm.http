@@ -1,0 +1,148 @@
+@hostname = 127.0.0.1
+@port = 8000
+@serviceUrl = http://{{hostname}}:{{port}}
+@baseUrl = http://{{hostname}}:{{port}}
+###
+GET {{baseUrl}}/
+
+###
+GET {{baseUrl}}/user
+###
+
+POST {{baseUrl}}/user
+Content-Type: application/json
+
+{
+    "fname": "Jungkook",
+    "lname": "Jeon",
+    "username" : "J.jungkook1",
+    "email": "jeon.jungkook1@example.com",
+    "password" : "jj1997!",
+    "phone": "08126327",
+    "address": "123 Main St, Cityville",
+    "roles" : "user"
+}
+###
+
+PUT {{baseUrl}}/user/6
+Content-Type: application/json
+
+{
+    "fname": "Taehyung",
+    "lname": "Kim",
+    "username" : "K.taehyung",
+    "email": "kim.taehyung@example.com",
+    "password" : "kt1995",
+    "phone": "0873489327",
+    "address": "123 Main St, Cityville",
+    "roles" : "user"
+}
+###
+
+DELETE {{baseUrl}}/user/11
+
+###
+GET {{baseUrl}}/admin
+###
+POST {{baseUrl}}/admin
+Content-Type: application/json
+
+{
+   "fname": "Namjoon",
+    "lname": "Kim",
+    "username" : "K.RM",
+    "email": "kim.namjoon@example.com",
+    "password" : "nj1994",
+    "phone": "0981218763",
+    "address": "123 Main St, Cityville"
+
+}
+###
+PUT {{baseUrl}}/admin/3
+Content-Type: application/json
+
+{
+    "fname": "Jungkook",
+    "lname": "Jeon",
+    "username" : "J.jungkook",
+    "email": "jeon.jungkook@example.com",
+    "password" : "jj1997",
+    "phone": "0871236327",
+    "address": "123 Main St, Cityville",
+    
+}
+###
+DELETE {{baseUrl}}/admin/1
+###
+
+
+GET {{baseUrl}}/post
+###
+POST {{baseUrl}}/post
+Content-Type: application/json
+
+{
+    "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
+    
+}
+###
+PUT {{baseUrl}}/post/3
+Content-Type: application/json
+
+{
+    "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
+}
+###
+DELETE {{baseUrl}}/post/1
+###
+
+GET {{baseUrl}}/post/1/comment
+###
+POST {{baseUrl}}/post/1/comment
+Content-Type: application/json
+
+{
+    "content":"เชี่ย อคคตสึ ยูตะหร่อมาก"
+}
+###
+PUT {{baseUrl}}/post/1/comment/2
+Content-Type: application/json
+
+{
+    "content":"อคคตสึ ยูตะหร่อมากค่ะ"
+}
+###
+DELETE {{baseUrl}}/post/1/comment/11
+###
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+    "username" : "M.yoongi",
+    "password" : "my1993"
+}
+
+###
+GET {{baseUrl}}/auth/profile
+Content-Type: application/json
+Authorization: Bearer 
+
+###
+GET {{baseUrl}}/auth/profile
+Content-Type: application/json
+Authorization: Bearer
+
+###
+GET {{baseUrl}}/bothUsers
+Content-Type: application/json
+Authorization: Bearer
+
+###
+GET {{baseUrl}}/only-users
+Content-Type: application/json
+Authorization: Bearer
+
+###
+GET {{baseUrl}}/only-admin
+Content-Type: application/json
+Authorization: Bearer
