@@ -1,12 +1,19 @@
 import './App.css';
-import Navbar from'./component/navbar';
-
-//const baseURL = 'http://localhost:8000';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './component/navbar';
+import Login from './page/login';
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      
+        <Router> 
+          <Navbar />
+          <Routes>
+            <Route path="/login" element={<Login />}/> 
+          </Routes>
+        </Router>
+      
     </div>
   );
 }

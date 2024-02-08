@@ -12,8 +12,8 @@ export class AuthController {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  async login(@Body() credentials: { username: string; password: string }) {
-    const user = await this.userService.findOne(credentials.username);
+  async login(@Body() credentials: { usernameOrEmail: string; password: string }) {
+    const user = await this.userService.findOne(credentials.usernameOrEmail);
 
     if (user && await this.authService.validatePassword(credentials.password, user.password)) {
       return { access_token: await this.authService.generateToken(user) };

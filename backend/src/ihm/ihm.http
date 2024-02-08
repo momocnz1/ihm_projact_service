@@ -114,18 +114,19 @@ Content-Type: application/json
 ###
 DELETE {{baseUrl}}/post/1/comment/11
 ###
+
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "username" : "M.yoongi",
+    "usernameOrEmail" : "min.yunggi@example.com",
     "password" : "my1993"
 }
 
 ###
 GET {{baseUrl}}/auth/profile
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTS55b29uZ2kiLCJpYXQiOjE3MDczNjk4MjcsImV4cCI6MTcwNzM2OTg4N30.Ptjmp6-F3RchSGte4BsOXDMDD0_zi6paoRSiS7_9lws
 
 ###
 GET {{baseUrl}}/auth/profile

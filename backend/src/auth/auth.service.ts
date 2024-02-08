@@ -5,7 +5,7 @@ import { UsersService } from 'src/users/users.service';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UsersService,
+    private readonly userasService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -13,8 +13,8 @@ export class AuthService {
     return password === userPassword;
   }
 
-  async generateToken(user: { id: number; username: string }): Promise<string> {
-    const payload = { sub: user.id, username: user.username };
+  async generateToken(user: { id: number; username: string ; email:string}): Promise<string> {
+    const payload = { sub: user.id, username: user.username && user.email };
     return this.jwtService.signAsync(payload);
   }
 }

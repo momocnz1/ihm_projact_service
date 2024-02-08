@@ -6,6 +6,16 @@
     align-items: center;
     background-color: #F0D9C3;
     color: #000000;
-    padding-left: 0.7rem;
-    margin: 0rem 0.5rem;
+    padding: 0rem 0.7rem;
+    margin: 0rem 1.5rem 0.1rem 1.5rem;
+  }
+  .Loginpage{
+    height: 2rem;
+    width: 4rem;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 0.2rem;
+    margin: 0.4rem;
+    background-color: #C2A891;
   }

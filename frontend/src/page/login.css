@@ -1,0 +1,71 @@
+.Login{
+  height: 60vh;
+  margin: 4rem 1.5rem ;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem ;
+  line-height: 1.5rem;
+  padding: 2rem;
+}
+.from{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.text{
+    height: 54.4vh;
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 0;
+    color: #C2A891;
+    
+}
+.logintext{
+    color: #633D19;
+    
+}
+.usernameOremail{
+    margin: 3rem 0 0 2.8rem ;    
+    font-size: 12px;
+}
+input[type = username]{
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+}
+.password{
+    margin: 1.7rem 0 0 2.8rem;
+    font-size: 12px;
+}
+input[type = password]{
+    width: 40vh;
+    height: 2rem;
+    color: #633D19;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+}
+button[type = submit]{
+    width: 8rem;
+    height: 2.7rem;
+    color: #FFFFFF;
+    background-color: #633D19;
+    border: 0.01px solid #633D19;
+    border-radius: 0.5rem;
+    margin-top: 0.83rem;
+}
+.Submit{
+    margin: 1.5rem 0;
+    text-align: center;
+}

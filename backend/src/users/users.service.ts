@@ -10,8 +10,8 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.userRepository.findOne({where :{ username }});
+  async findOne(identifier: string): Promise<User | undefined> {
+    return this.userRepository.findOne({where :[{ username: identifier }, { email: identifier }]});
   }
   async getUserRoles(username: string): Promise<string[] | undefined> {
     const user = await this.findOne(username);
