@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import Post from 'src/entities/post';
 import { CreateCommentDTO, CreatepostDTO, UpdateCommentDTO, UpdatepostDTO} from 'src/ihm/ihm.dto'
 import User from 'src/entities/user';
@@ -35,8 +35,9 @@ export default class PostService {
     }
     findAll(): Promise<Post[]> {
         return this.postRepository.find({
+            relations:['comments'],
             where: {
-                parent: null,
+                parent: IsNull(),
                 isApproved: true,
             }
         });
@@ -174,6 +175,7 @@ export default class PostService {
         }
         //postToUpdate.title = update.title;
         postToUpdate.content = update.content;
+        postToUpdate.images = update.image;
 
         return await this.postRepository.save(postToUpdate);
     }

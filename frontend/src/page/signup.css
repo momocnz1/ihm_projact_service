@@ -1,0 +1,173 @@
+.from {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    background-color: #C2A891;
+    background-image: url('../icon/rejected.png');
+    background-position: 2px 4px;
+    background-repeat: no-repeat; 
+    background-size: 20px;
+    border: 0px solid #F0D9C3;
+    border-radius: 0.5rem;
+    float: right;
+}
+
+.Signup {
+    width: 56vh;
+    height: 75vh;
+    margin: 4rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1.5rem;
+    line-height: 1.5rem;
+    padding: 1rem ;
+}
+
+.signuptext{
+    color: #633D19;
+    margin: 1rem 0 1rem;
+}
+
+.Fname{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=Fname] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.Lname{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=Lname] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.username{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=username] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.passwords{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=passwords] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.email{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=email] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.phone{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=phone] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+
+.address{
+    color: #E5E1E1;
+    margin: 0 0 0 3rem;
+    font-size: 12px;
+}
+input[ type=address] {
+    width: 40vh;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #633D19;
+    background-color: #FFFFFF;
+    border: 0.1px solid #dcdcdc;
+    border-radius: 4rem;
+    padding-left: 0.4rem;
+}
+button[ type = Createsubmit ]{
+    width: 8rem;
+    height: 2.7rem;
+    color: #FFFFFF;
+    background-color: #633D19;
+    border: 0.01px solid #633D19;
+    border-radius: 0.5rem;
+}
+.Createsubmit{
+    margin: 1rem 0;
+    text-align: center;
+}

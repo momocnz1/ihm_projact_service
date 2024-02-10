@@ -9,13 +9,31 @@
     padding: 0rem 0.7rem;
     margin: 0rem 1.5rem 0.1rem 1.5rem;
   }
+  input[ type = text]{
+    width: 30rem;
+    height: 1.8rem;
+    color: #000;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    background-image: url('../icon/search.png');
+    background-position: 6px 4px;
+    background-repeat: no-repeat; 
+    background-size: 20px;
+    border: 0.01px solid #F0D9C3;
+    border-radius: 0.5rem;
+    padding-left: 40px;
+  }
+  
   .Loginpage{
     height: 2rem;
-    width: 4rem;
+    width: 5.3rem;
+    border-radius: 1rem;
+    background-color: #C2A891;
+    color: #000000;
     display: inline-block;
+    padding-top: 0.2rem;
     text-align: center;
     text-decoration: none;
-    padding-top: 0.2rem;
-    margin: 0.4rem;
-    background-color: #C2A891;
+  
   }
+ 

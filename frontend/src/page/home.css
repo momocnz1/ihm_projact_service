@@ -1,0 +1,58 @@
+.header-icon {}
+
+.active-active {
+    text-decoration: underline;
+}
+
+.header-link:hover {
+    text-decoration: underline;
+}
+
+.header-link {
+    text-decoration: none;
+    color: black;
+}
+
+.Homepage {
+    width: 5rem;
+    height: 1.8rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-image: url('../icon/home.png');
+    background-position: 5px 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 0.5rem;
+    padding-left: 2rem;
+
+}
+
+.Feedpage {
+    width: 5rem;
+    height: 1.8rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-image: url('../icon/category.png');
+    background-position: 5px 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 0.5rem;
+    padding-left: 2rem;
+}
+
+.Notificationpage{
+    width: 5rem;
+    height: 1.8rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-image: url('../icon/notification.png');
+    background-position: 5px 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 0.5rem;
+    padding-left: 2rem;
+
+}
+.Popular{
+    text-align: center;
+}

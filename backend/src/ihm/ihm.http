@@ -83,7 +83,6 @@ Content-Type: application/json
 
 {
     "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
-    
 }
 ###
 PUT {{baseUrl}}/post/3
@@ -115,6 +114,7 @@ Content-Type: application/json
 DELETE {{baseUrl}}/post/1/comment/11
 ###
 
+
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
@@ -123,10 +123,11 @@ Content-Type: application/json
     "password" : "my1993"
 }
 
+
 ###
 GET {{baseUrl}}/auth/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTS55b29uZ2kiLCJpYXQiOjE3MDczNjk4MjcsImV4cCI6MTcwNzM2OTg4N30.Ptjmp6-F3RchSGte4BsOXDMDD0_zi6paoRSiS7_9lws
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTS55b29uZ2kiLCJlbWFpbCI6Im1pbi55dW5nZ2lAZXhhbXBsZS5jb20iLCJpYXQiOjE3MDc0Nzk5NjQsImV4cCI6MTcwNzQ4MDAyNH0.JS_MJ7FvjhrrE2m4zQZGIEixPh4BeYgpM2Om3rpnoaE
 
 ###
 GET {{baseUrl}}/auth/profile

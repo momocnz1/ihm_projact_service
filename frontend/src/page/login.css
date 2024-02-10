@@ -40,6 +40,7 @@ input[type = username]{
     background-color: #FFFFFF;
     border: 0.1px solid #dcdcdc;
     border-radius: 4rem;
+    padding-left: 0.4rem;
 }
 .password{
     margin: 1.7rem 0 0 2.8rem;
@@ -55,6 +56,8 @@ input[type = password]{
     background-color: #FFFFFF;
     border: 0.1px solid #dcdcdc;
     border-radius: 4rem;
+    padding-left: 0.4rem;
+
 }
 button[type = submit]{
     width: 8rem;
@@ -68,4 +71,20 @@ button[type = submit]{
 .Submit{
     margin: 1.5rem 0;
     text-align: center;
+}
+.x{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+}
+.signuplink{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Signuppages{
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }

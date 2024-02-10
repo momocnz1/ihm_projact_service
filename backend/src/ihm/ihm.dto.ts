@@ -146,6 +146,9 @@ export class CreatepostDTO{
     @IsString()
     content: string;
 
+    @IsNotEmpty()
+    image: Buffer;
+
 }
 export class UpdatepostDTO{
     
@@ -153,6 +156,8 @@ export class UpdatepostDTO{
     @IsString()
     content: string;
 
+    @IsNotEmpty()
+    image: Buffer;
 }
 
 export  class CreateCommentDTO{
