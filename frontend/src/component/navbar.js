@@ -4,17 +4,26 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 function Navbar() {
-  const { loggedInUsername } = useAuth();
+  const { loggedInUsername,logout } = useAuth();
+
+  const handleLogout = () => {
+    logout(); // เรียกใช้งานฟังก์ชัน logout จาก context
+  };
 
   return (
     <nav className="navbar">
       <div className='home-text' style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '24px' }}>Talk about me</div>
       <input type='text'></input>
       <div>
-      {loggedInUsername ? (           
-
+        {loggedInUsername ? (
+          <div className='dropdown'>
           <Link to="/home" className='Loginpage'>{loggedInUsername}</Link>
-        ) : (
+          <div className='dropdn'> 
+            <Link to="/profile" className='profile'>Profile</Link>
+            <span onClick={handleLogout} className="logoutButton">Logout</span>
+          </div>          
+          </div>
+          ) : (
           <Link to="/login" className='Loginpage'>Login</Link>
         )}
       </div>

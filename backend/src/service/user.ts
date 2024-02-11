@@ -14,8 +14,7 @@ import PostService from './post';
      }
      constructor(
        @InjectRepository(User)
-       private userRepository : Repository<User>,
-       private postService: PostService
+       private userRepository : Repository<User>
      ){}
      findAll() : Promise<User[]>{
        return this.userRepository.find();
@@ -26,7 +25,22 @@ import PostService from './post';
      async findById(id: number): Promise<User> {
       return this.userRepository.findOne({where : { id : id}});
     }
-     async creat(user : CreateuserDTO) : Promise<User | null>{
+
+    async createWithId(id: number, createuserDTO: CreateuserDTO): Promise<User> {
+      const user = new User();
+      user.id = id; // Assign the provided id
+      user.fname = createuserDTO.fname;
+      user.lname = createuserDTO.lname;
+      user.username = createuserDTO.username;
+      user.email = createuserDTO.email;
+      user.password = createuserDTO.password;
+      user.phone = createuserDTO.phone;
+      user.address = createuserDTO.address; 
+      return await this.userRepository.save(user);
+    }
+
+
+    async creat(user : CreateuserDTO) : Promise<User | null>{
       try{
         const errors = await validate(user);
         if(errors.length > 0 ){
@@ -64,7 +78,14 @@ import PostService from './post';
         return true;
       }
      }
-     
+
+     async updateUserProfileImage(id: number, profileImageFileName: string): Promise<void> {
+      const user = await this.userRepository.findOne({ where: { id: id } });
+      user.profileImage = profileImageFileName;
+      await this.userRepository.save(user);
+      console.log()
+    }
+
      async update(id: number, update : UpdateuserDTO) : Promise<User | null>{
        const usertoUpdate = await this.userRepository.findOne({ where: { id: id } });
        if (!usertoUpdate) {
@@ -80,6 +101,7 @@ import PostService from './post';
        usertoUpdate.roles = update.roles;
        return await this.userRepository.save(usertoUpdate);
      }
+     
      async DeleteQuryBuilder(id : number) : Promise<void>{
        await this.userRepository.delete({id:id})
      }

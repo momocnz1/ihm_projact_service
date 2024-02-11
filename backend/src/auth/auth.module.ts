@@ -18,8 +18,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory : (configService : ConfigService) => {
         let option : JwtModuleOptions = {
           global: true,
-          secret: configService.get<string>("SECRET",'default_secret'),
-          signOptions: { expiresIn: '60s'}
+          secret: configService.get<string>("SECRET",'SECRET'),
+          signOptions: { expiresIn: '1h' },
         }
         return option
       },

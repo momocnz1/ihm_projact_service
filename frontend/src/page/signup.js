@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './signup.css';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../auth/AuthContext';
 
 const Signup = () => {
     const [user, setFormData] = useState({
@@ -15,7 +15,7 @@ const Signup = () => {
         address: ''
     });
     const navigate = useNavigate();
-
+    const { registerUser } = useAuth();
 
     const handleChange = (e) => {
         setFormData({ ...user, [e.target.name]: e.target.value });
@@ -26,8 +26,8 @@ const Signup = () => {
         try {
             const response = await axios.post('http://localhost:8000/user', user);
             console.log('User created:', response.data);
+            registerUser(response.data.username);
             navigate('/home');
-            // เพิ่มการประมวลผลเพิ่มเติมหรืออัปเดตสถานะของแอปพลิเคชัน React ตามต้องการ
         } catch (error) {
             console.error('Error creating user:', error.response.data.message);
         }

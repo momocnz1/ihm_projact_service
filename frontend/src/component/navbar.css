@@ -1,39 +1,88 @@
 .navbar {
-    height: 3.5rem;
-    display: flex;
-    border-bottom: 1px solid #000;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #F0D9C3;
-    color: #000000;
-    padding: 0rem 0.7rem;
-    margin: 0rem 1.5rem 0.1rem 1.5rem;
-  }
-  input[ type = text]{
-    width: 30rem;
-    height: 1.8rem;
-    color: #000;
-    box-sizing: border-box;
-    background-color: #FFFFFF;
-    background-image: url('../icon/search.png');
-    background-position: 6px 4px;
-    background-repeat: no-repeat; 
-    background-size: 20px;
-    border: 0.01px solid #F0D9C3;
-    border-radius: 0.5rem;
-    padding-left: 40px;
-  }
+  height: 3.5rem;
+  display: flex;
+  border-bottom: 1px solid #000;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F0D9C3;
+  color: #000000;
+  padding: 0rem 0.7rem;
+  margin: 0rem 1.5rem 0.1rem 1.5rem;
+}
+
+input[ type=text] {
+  width: 30rem;
+  height: 1.8rem;
+  color: #000;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  background-image: url('../icon/search.png');
+  background-position: 6px 4px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 0.01px solid #F0D9C3;
+  border-radius: 0.5rem;
+  padding-left: 40px;
+}
+
+.Loginpage {
+  height: 2rem;
+  width: 5.3rem;
+  border-radius: 0.1rem ;
+  background-color: #C2A891;
+  color: #000000;
+  display: inline-block;
+  padding-top: 0.2rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdn {
+  width: 4.9rem;
+  border-radius: 0 0 0.3rem  0.3rem;
+  padding: 0 0 0.4rem 0.4rem ;
+  display: none;
+  position: absolute;
+  background-color: #C2A891;
+  z-index: 1;
+}
+
+.logoutButton {
   
-  .Loginpage{
-    height: 2rem;
-    width: 5.3rem;
-    border-radius: 1rem;
-    background-color: #C2A891;
-    color: #000000;
-    display: inline-block;
-    padding-top: 0.2rem;
-    text-align: center;
-    text-decoration: none;
-  
-  }
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.profile{ 
+  margin-bottom: 0.4rem;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+}
+
+.logoutButton:hover {
+  background-color: #C2A891;
+}
+
+.profile:hover{
  
+  background-color: #C2A891;
+  
+}
+.dropdown:hover .dropdn {
+  display: block;
+}
+.dropdown:hover .Loginpage{
+  background-color: #C2A891;
+}

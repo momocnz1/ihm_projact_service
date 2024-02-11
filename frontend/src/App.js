@@ -8,6 +8,8 @@ import Feed from './page/feed';
 import Notification from './page/notification';
 import { AuthProvider } from './auth/AuthContext'
 import Header from './component/header'
+import Post from'./page/post'
+import Profile from './page/profile'
 
 function App() {
 
@@ -23,7 +25,8 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/notification" element={<Notification />} />
-
+            <Route path='/post' element={<Post />}/>
+            <Route path='/profile' element={<Profile/>}/>
           </Routes>
           
         </Router>

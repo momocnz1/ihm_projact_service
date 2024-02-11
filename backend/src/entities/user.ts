@@ -28,6 +28,9 @@ export default class User {
     @Column()
     address: string;
 
+    @Column("blob", { nullable: true })
+    profileImage: string;  
+
     @Column({ type: 'json', nullable: true })
     roles: string[]; 
     

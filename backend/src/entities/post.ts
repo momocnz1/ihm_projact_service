@@ -16,8 +16,6 @@ export default class Post extends BaseEntity{
     @Column({ default: false })
     isApproved: boolean;
 
-    @Column("blob", { nullable: true })
-    images: Buffer;    
 
     @ManyToOne(() => User)
     user: User;

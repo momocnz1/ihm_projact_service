@@ -1,4 +1,4 @@
-import {  IsAlphanumeric, IsEmail, IsNotEmpty, IsNumberString, IsString, Length, Matches } from 'class-validator'
+import {  IsAlphanumeric, IsEmail, IsNotEmpty, IsNumber, IsNumberString, IsString, Length, Matches } from 'class-validator'
 
 export class CreateuserDTO{
 
@@ -73,6 +73,9 @@ export class UpdateuserDTO{
     @IsString()
     roles: string[];
 
+    @IsNotEmpty()
+    image: string;;
+
 }
 export class CreateadminDTO{
 
@@ -106,6 +109,9 @@ export class CreateadminDTO{
     @IsNotEmpty()
     @IsString()
     address: string;
+
+    @IsNotEmpty()
+    image: string;;
 }
 export class UpdateadminDTO{
 
@@ -139,6 +145,9 @@ export class UpdateadminDTO{
     @IsNotEmpty()
     @IsString()
     address: string;
+
+    @IsNotEmpty()
+    image: string;;
 }
 export class CreatepostDTO{
     
@@ -147,7 +156,7 @@ export class CreatepostDTO{
     content: string;
 
     @IsNotEmpty()
-    image: Buffer;
+    image: string;;
 
 }
 export class UpdatepostDTO{

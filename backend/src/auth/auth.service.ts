@@ -13,8 +13,14 @@ export class AuthService {
     return password === userPassword;
   }
 
-  async generateToken(user: { id: number; username: string ; email:string}): Promise<string> {
-    const payload = { sub: user.id, username: user.username  ,email: user.email };
+  async logout(user: any) {
+    user.token = null;
+    // ส่วนอื่น ๆ ที่เกี่ยวข้องกับการ logout
+  }
+
+  async generateToken(user: { id: number; username: string ; email:string 
+  ;profileImage : string}): Promise<string> {
+    const payload = { sub: user.id, username: user.username  ,email: user.email, image: user.profileImage };
     return this.jwtService.signAsync(payload);
   }
 }

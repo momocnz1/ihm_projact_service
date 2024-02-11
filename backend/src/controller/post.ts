@@ -1,9 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req, Request, UseGuards } from '@nestjs/common';
 import PostService from '../service/post';
 import PostEntity from '../entities/post';
 import { CreatepostDTO, UpdateCommentDTO, UpdatepostDTO } from '../ihm/ihm.dto';
 import UserService from '../service/user';
 import User from '../entities/user';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 
 type ReviewMessage = {
@@ -34,7 +35,7 @@ export default class PostController {
         return this.postService.getComment(id)
     }
 
-
+    @UseGuards(AuthGuard)
     @Post(':id/comment')
     async addComment(@Request() req, @Param('id') id : number,@Body() comment: any ){
         
@@ -42,12 +43,16 @@ export default class PostController {
         let user = req.user;
         return this.postService.addComment(id,user,comment)
     }
+
+    @UseGuards(AuthGuard)
     @Put(':id/comment/:parent')
     async updateComment(@Param('id') id: number,@Param('parent') parent: number, @Body() update: UpdateCommentDTO) {
+        
         const result = await this.postService.updateComment(update, parent,id);
         return { message: 'Comment updated successfully', result };
     }
 
+    @UseGuards(AuthGuard)
     @Put(':id')
     async updatePost(
         @Param('id') id: number,
@@ -56,35 +61,34 @@ export default class PostController {
         const result = await this.postService.update(id, updatePostDTO);
       
         if ('message' in result) {
-          // กรณีมี ReviewMessage แสดงว่ามีปัญหาเช่นคำหยาบ
-          // ทำการ return ReviewMessage หรือปรับเป็นการตอบกลับที่เหมาะสม
           return { message: result.message };
         }
-      
-        // กรณีไม่มี ReviewMessage แสดงว่าไม่มีปัญหา
-        // ให้คืนค่า PostEntity ได้เลย
         return result as PostEntity;
       }
 
+    @UseGuards(AuthGuard)
     @Post()
-    async postCreat(@Body() createpostDTO: CreatepostDTO, user : User ): Promise<PostEntity | ReviewMessage> {
+    async postCreat(@Request() req,@Body() createpostDTO: CreatepostDTO,): Promise<PostEntity | ReviewMessage> {
         //return this.postService.createPost(createpostDTO)
+        let user = req.user;
         const result = await this.postService.createPost(createpostDTO, user);
         if ('message' in result) {
-            // กรณีมี ReviewMessage แสดงว่ามีคำหยาบ
-            // ทำการ return ReviewMessage หรือปรับเป็นการตอบกลับที่เหมาะสม
             return { message: result.message };
           }
-        
-          // กรณีไม่มี ReviewMessage แสดงว่าไม่มีคำหยาบ
-          // ให้คืนค่า PostEntity ได้เลย
           return result as PostEntity;
     }
 
+    @UseGuards(AuthGuard)
     @Delete(":id")
     deletepostById(@Param('id') id: number): string {
         this.postService.DeleteQuryBuilder(id)
         return "Post delete successfully."
     }
     
+    @UseGuards(AuthGuard)
+    @Delete(":id/comment/:parent")
+    deletecommetById(@Param('id') id: number,@Param('parent') parent: number): string {
+        this.postService.DeleteComment(id,parent)
+        return "Post delete successfully."
+    }
 }

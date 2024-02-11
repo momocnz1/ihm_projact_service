@@ -9,18 +9,24 @@ GET {{baseUrl}}/
 GET {{baseUrl}}/user
 ###
 
-POST {{baseUrl}}/user
+POST {{baseUrl}}/user/3
 Content-Type: application/json
 
 {
-    "fname": "Jungkook",
-    "lname": "Jeon",
-    "username" : "J.jungkook1",
-    "email": "jeon.jungkook1@example.com",
-    "password" : "jj1997!",
-    "phone": "08126327",
-    "address": "123 Main St, Cityville",
-    "roles" : "user"
+    "fname": "Yoongi",
+    "lname": "Min",
+    "username" : "M.yoongi",
+    "email": "min.yunggi@example.com",
+    "password" : "My19920309",
+    "phone": "0984532763",
+    "address": "123 Main St, Cityville"
+}
+###
+POST {{baseUrl}}user/1/profile-image
+Content-Type: application/json
+
+{
+
 }
 ###
 
@@ -39,7 +45,7 @@ Content-Type: application/json
 }
 ###
 
-DELETE {{baseUrl}}/user/11
+DELETE {{baseUrl}}/user/12
 
 ###
 GET {{baseUrl}}/admin
@@ -57,6 +63,7 @@ Content-Type: application/json
     "address": "123 Main St, Cityville"
 
 }
+
 ###
 PUT {{baseUrl}}/admin/3
 Content-Type: application/json
@@ -72,17 +79,16 @@ Content-Type: application/json
     
 }
 ###
-DELETE {{baseUrl}}/admin/1
+DELETE {{baseUrl}}/admin/
 ###
-
-
 GET {{baseUrl}}/post
 ###
+
 POST {{baseUrl}}/post
 Content-Type: application/json
 
 {
-    "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
+    "content": "Agus D"
 }
 ###
 PUT {{baseUrl}}/post/3
@@ -92,16 +98,16 @@ Content-Type: application/json
     "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
 }
 ###
-DELETE {{baseUrl}}/post/1
+DELETE {{baseUrl}}/post/58
 ###
 
-GET {{baseUrl}}/post/1/comment
+GET {{baseUrl}}/post/2/comment
 ###
-POST {{baseUrl}}/post/1/comment
+POST {{baseUrl}}/post/11/comment
 Content-Type: application/json
 
 {
-    "content":"เชี่ย อคคตสึ ยูตะหร่อมาก"
+    "content":"จริงคั้บ"
 }
 ###
 PUT {{baseUrl}}/post/1/comment/2
@@ -113,7 +119,6 @@ Content-Type: application/json
 ###
 DELETE {{baseUrl}}/post/1/comment/11
 ###
-
 
 POST {{baseUrl}}/auth/login
 Content-Type: application/json
@@ -127,8 +132,7 @@ Content-Type: application/json
 ###
 GET {{baseUrl}}/auth/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTS55b29uZ2kiLCJlbWFpbCI6Im1pbi55dW5nZ2lAZXhhbXBsZS5jb20iLCJpYXQiOjE3MDc0Nzk5NjQsImV4cCI6MTcwNzQ4MDAyNH0.JS_MJ7FvjhrrE2m4zQZGIEixPh4BeYgpM2Om3rpnoaE
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsInVzZXJuYW1lIjoiTS55b29uZ2kiLCJlbWFpbCI6Im1pbi55dW5nZ2lAZXhhbXBsZS5jb20iLCJpbWFnZSI6bnVsbCwiaWF0IjoxNzA3NTk4OTA1LCJleHAiOjE3MDc2MDI1MDV9.2Gta_ba0g3VvRE6fcZHrkcPlRT7YbjiS38HD0YCjjz4
 ###
 GET {{baseUrl}}/auth/profile
 Content-Type: application/json

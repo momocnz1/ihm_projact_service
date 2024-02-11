@@ -1,4 +1,4 @@
-import { Controller,Get,Request, Post, Body, HttpStatus, HttpCode, UseGuards } from '@nestjs/common';
+import { Controller,Get,Request, Post, Body, HttpStatus, HttpCode, UseGuards, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { UsersService } from 'src/users/users.service';
 import { AuthGuard } from './auth.guard';
@@ -20,6 +20,11 @@ export class AuthController {
     } else {
       return { message: 'Invalid credentials' };
     }
+  }
+  @Post('logout')
+  async logout(@Req() req) {
+    await this.authService.logout(req.user);
+    return { message: 'Logout successfully' };
   }
 
   @UseGuards(AuthGuard)

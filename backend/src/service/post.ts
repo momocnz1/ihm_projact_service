@@ -35,7 +35,7 @@ export default class PostService {
     }
     findAll(): Promise<Post[]> {
         return this.postRepository.find({
-            relations:['comments'],
+            relations:['comments','user','comments.user'],
             where: {
                 parent: IsNull(),
                 isApproved: true,
@@ -50,26 +50,14 @@ export default class PostService {
         await this.fetchDataAndPopulateList();
         //console.log('Before hasProfanity:', commentDTO.content);
 
-        if (await this.hasProfanity(commentDTO.content)) {
-            // สร้าง Comment ที่มีสถานะรอยืนยันจากแอดมิน
-            const unapprovedComment = this.postRepository.create({
-              ...commentDTO,
-              date: new Date(),
-              parent: await this.findOne(id),
-              user: user,
-              isApproved: false, 
-            });
-            this.sendToAdminForApproval(commentDTO);
-            return await this.postRepository.save(unapprovedComment);
-            //return { message: 'Your comment is under review by the admin.', comment: savedComment };
-          }
+        
       
           const parentPost = await this.findOne(id);
       
           if (!parentPost) {
             throw new Error('Parent post not found.');
           }
-            
+            console.log(user)
         const p = Post.create({
             ...commentDTO,
             date: new Date(),
@@ -77,38 +65,36 @@ export default class PostService {
             user : user,
             isApproved: true, 
         })
+        console.log('ok',p)
+        if (await this.hasProfanity(commentDTO.content)) {
+            
+            //return { message: 'Your comment is under review by the admin.', comment: savedComment };
+          }
         
-        
-        return p.save()
+        await p.save()
+        return p 
     }
     
 
     async createPost(createPostDTO: CreatepostDTO, user : User): Promise<Post | ReviewMessage> {
         await fetchDataAndPopulateList();
-        console.log('Before hasProfanity:', createPostDTO.content);
+        //console.log('Before hasProfanity:', createPostDTO.content);
         
-        if (await this.hasProfanity(createPostDTO.content)){
-            console.log('Inside hasProfanity block');
-            const unapprovedPost = this.postRepository.create({
-                ...createPostDTO,
-                date: new Date(),
-                isApproved: false,
-                user: user,
-            })
-            this.sendToAdminForApproval(createPostDTO);
-            return await this.postRepository.save(unapprovedPost);
-            //return { message: 'Your post is under review by the admin.' };
-        }
+       console.log(user)
         //console.log('After hasProfanity:', createPostDTO.content);
          const newPost = this.postRepository.create({
                 ...createPostDTO,
                 date: new Date(),
                 user: user,
                 isApproved: true,
-        });
+        }); if (await this.hasProfanity(createPostDTO.content)){
+            console.log('Inside hasProfanity block');
+            
+            //return { message: 'Your post is under review by the admin.' };
+        }
         
         await this.postRepository.save(newPost);
-        
+        console.log('PoSt',newPost)
         return newPost;
         
     }
@@ -116,7 +102,7 @@ export default class PostService {
         await fetchDataAndPopulateList();
         //console.log('Before hasProfanity:', update.content);
         if(await this.hasProfanity(update.content)){
-            this.sendToAdminForApproval(update)
+            // this.sendToAdminForApproval(update)
             const unapprovedupdatecomment = await this.postRepository.findOne({
                 where : { 
                     id : id
@@ -159,7 +145,7 @@ export default class PostService {
             }
             //unapprovedpostToUpdate.title = update.title;
             unapprovedpostToUpdate.content = update.content;
-            this.sendToAdminForApproval(update);
+            // this.sendToAdminForApproval(update);
             return await this.postRepository.save(unapprovedpostToUpdate);
         //return { message: 'Your post is under review by the admin.' };
         }
@@ -175,7 +161,7 @@ export default class PostService {
         }
         //postToUpdate.title = update.title;
         postToUpdate.content = update.content;
-        postToUpdate.images = update.image;
+        
 
         return await this.postRepository.save(postToUpdate);
     }
@@ -199,10 +185,10 @@ export default class PostService {
         console.log('Post deleted successfully');
     }
 
-    async DeleteComment(parent : number): Promise<void> {
+    async DeleteComment(parent : number,id:number): Promise<void> {
         const commentToDelete  = await this.postRepository.findOne({
             where : { 
-                id : parent
+                id : id,
             }
         });
 
@@ -228,7 +214,7 @@ export default class PostService {
     }    
     
     private async hasProfanity(content: string): Promise<boolean> {
-        //console.log('Content:', content);
+        console.log('Content:', content);
         
         for (const profanity of profanityList) {
             //console.log('Checking:', profanity);
@@ -241,16 +227,13 @@ export default class PostService {
         //console.log('No profanity found');
         return false; // ไม่พบคำหยาบ
     }
-    
-    async sendToAdminForApproval(item: any):Promise<void> {
-        console.log(`Sending post to admin for approval: ${JSON.stringify(item)}`);
-    }
+   
     async approvePost(id: number): Promise<Post>{
         const postToApprove = await this.postRepository.findOne({
             where : {
                 id : id
             }
-        })
+        }) 
 
         if(!postToApprove){
             throw new NotFoundException('Post not founf')
