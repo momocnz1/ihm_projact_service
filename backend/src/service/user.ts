@@ -28,7 +28,7 @@ import PostService from './post';
 
     async createWithId(id: number, createuserDTO: CreateuserDTO): Promise<User> {
       const user = new User();
-      user.id = id; // Assign the provided id
+      user.id = id; 
       user.fname = createuserDTO.fname;
       user.lname = createuserDTO.lname;
       user.username = createuserDTO.username;

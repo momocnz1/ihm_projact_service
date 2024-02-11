@@ -20,7 +20,7 @@ function Navbar() {
           <Link to="/home" className='Loginpage'>{loggedInUsername}</Link>
           <div className='dropdn'> 
             <Link to="/profile" className='profile'>Profile</Link>
-            <span onClick={handleLogout} className="logoutButton">Logout</span>
+            <Link to="/home" onClick={handleLogout} className="logoutButton">Logout</Link>
           </div>          
           </div>
           ) : (

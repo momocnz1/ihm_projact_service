@@ -1,59 +1,132 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from '../auth/AuthContext';
+import React, { useEffect, useState } from 'react';
 import './profile.css'
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+
+
 
 export default function Profile() {
-  const [images, setImages] = useState(null);
-  const [imagesURLs, setImagesURLs] = useState([]);
-  const { userId } = useAuth();
-
+  const [profile, setprofile] = useState('');
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    if (!images || images.length < 1) return;
-    const newImagesUrls = [];
-    images.forEach((image) => newImagesUrls.push(URL.createObjectURL(image)))
-    setImagesURLs(newImagesUrls);
-  }, [images]);
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const decodedToken = jwtDecode(token);
+        const userId = decodedToken.sub;
+        // console.log(userId)
+        // console.log(decodedToken)
+        const response = await axios.get('http://localhost:8000/user/'
+          + userId, {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
 
-  function onImageChange(e) {
-    setImages([...e.target.files]);
-  }
-
-  async function uploadImages() {
-    try {
-      if (images.length === 0) {
-        alert('Please select an image to upload');
-        return;
+        });
+        // console.log(localStorage)
+        // console.log(response.data)
+        setprofile(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
+    };
+    fetchData();
+  }, []);
 
-      const formData = new FormData();
-      images.forEach((image) => formData.append('profileImage', image));
 
-      // Replace 'http://localhost:3000' with your NestJS server URL
-      const imageProfile = await axios.post(`http://localhost:8000/user/${userId}/profile-image`, formData, {
+  const handleEdit = () => {
+    setEditing(true);
+  };
+
+  const handleSave = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.sub;
+
+      const response = await axios.put(`http://localhost:8000/user/${userId}`, profile, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          Authorization: 'Bearer ' + token
         }
       });
-      console.log(imageProfile)
-      alert('Profile images uploaded successfully');
+
+      console.log(response.data);
+      setEditing(false);
     } catch (error) {
-      console.error('Error uploading profile images:', error);
+      console.error('Error saving data:', error);
     }
-  }
+  };
+
+  const handleCancel = () => {
+    setEditing(false);
+  };
+
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}>
       <div className='profileedit'>
-        <div>Profile</div>
-        <input type='file' multiple accept='image/*' onChange={onImageChange} />
-        <button onClick={uploadImages}>Upload Profile Images</button>
-        {imagesURLs.map((imageSrc, index) => (
-          <img key={index} src={imageSrc} alt="" />
-        ))}
-        <div></div>
+        <div style={{
+          fontWeight: 'bold',
+          fontSize: ' 26px',
+          textAlign: 'center',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>Profile</div>
+        <div className='myprofile'>
+          <div style={{
+            fontWeight: 'bold',
+            textAlign: 'center',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>my profile</div>
+          {profile && (
+            <div>
+               {editing ? ( 
+                <div className='fromedit'>
+                  <p>First Name : 
+                  <input type="profile" value={profile.fname} onChange={(e) => setprofile({ ...profile, fname: e.target.value })} />
+                  </p>
+                  <p >Last Name :
+                  <input type="profile" value={profile.lname} onChange={(e) => setprofile({ ...profile, lname: e.target.value })} />
+                  </p>
+                  <p >Username :
+                  <input type="profile" value={profile.username} onChange={(e) => setprofile({ ...profile, username: e.target.value })} />
+                  </p>
+                  <p >Email    : 
+                  <input type="emails" value={profile.email} onChange={(e) => setprofile({ ...profile, email: e.target.value })} />
+                  </p>
+                  <p >Phone    : 
+                  <input type="tel" value={profile.phone} onChange={(e) => setprofile({ ...profile, phone: e.target.value })} />
+                  </p>
+                  <p>Address   :
+                  <input type="addr" value={profile.address} onChange={(e) => setprofile({ ...profile, address: e.target.value })} />
+                  </p>
+                  <p>Password :  
+                  <input type="profile" value={profile.password} onChange={(e) => setprofile({ ...profile, password: e.target.value })} />
+                  </p>
+                  <div className='button-container'>
+                  <button className='button-save' onClick={handleSave}style={{display: 'flex', }}>Save</button>
+                  <button className='button-cancle' onClick={handleCancel} style={{ display: 'flex', justifyContent: 'flex-end'}}>Cancel</button>
+                  </div>
+                </div>):(
+              <div>
+              <p><strong>First Name : </strong>{profile.fname}</p>
+              <p><strong>Last Name : </strong>{profile.lname}</p>
+              <p><strong>Username : </strong>{profile.username}</p>
+              <p><strong>Email : </strong>{profile.email}</p>
+              <p><strong>Phone : </strong>{profile.phone}</p>
+              <p><strong>Address : </strong>{profile.address}</p>
+              <button onClick={handleEdit}>Edit</button>
+            </div>)}
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  )
+  );
 }

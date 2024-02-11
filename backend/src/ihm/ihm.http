@@ -9,16 +9,16 @@ GET {{baseUrl}}/
 GET {{baseUrl}}/user
 ###
 
-POST {{baseUrl}}/user/3
+POST {{baseUrl}}/user/1
 Content-Type: application/json
 
 {
-    "fname": "Yoongi",
-    "lname": "Min",
-    "username" : "M.yoongi",
-    "email": "min.yunggi@example.com",
-    "password" : "My19920309",
-    "phone": "0984532763",
+   "fname": "Namjoon",
+    "lname": "Kim",
+    "username" : "K.RM",
+    "email": "kim.namjoon@example.com",
+    "password" : "Nj19940912",
+    "phone": "0981218763",
     "address": "123 Main St, Cityville"
 }
 ###
@@ -103,21 +103,22 @@ DELETE {{baseUrl}}/post/58
 
 GET {{baseUrl}}/post/2/comment
 ###
-POST {{baseUrl}}/post/11/comment
+POST {{baseUrl}}/post/19828/comment
 Content-Type: application/json
 
 {
     "content":"จริงคั้บ"
 }
 ###
-PUT {{baseUrl}}/post/1/comment/2
+PUT {{baseUrl}}/post/19828/comment/19848
 Content-Type: application/json
 
-{
-    "content":"อคคตสึ ยูตะหร่อมากค่ะ"
+{ 
+    "content":"จริงคั้บ"
 }
 ###
-DELETE {{baseUrl}}/post/1/comment/11
+
+DELETE {{baseUrl}}/post/19828/comment/19845
 ###
 
 POST {{baseUrl}}/auth/login

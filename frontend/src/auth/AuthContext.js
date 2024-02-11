@@ -17,8 +17,10 @@ export const AuthProvider = ({ children }) => {
         try {
             const parts = accessToken.split('.');
             localStorage.setItem('token',accessToken)
+            console.log(accessToken)
             const decodedToken = JSON.parse(atob(parts[1]));
             console.log(decodedToken);
+            
             // console.log(decodedToken.username)
             console.log(decodedToken.sub)
             if (decodedToken) {

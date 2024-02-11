@@ -1,7 +1,57 @@
 .profileedit{
     width: 80vh;
     border-radius: 2rem;
-    background-color: #fff;
     padding: 1rem 3rem 3rem  3rem;
     margin: 2rem;
+    color: #633D19;
+
+}
+.myprofile{
+    background-color: #fff;
+    padding: 1rem;
+    color: #633D19;
+    margin: 1rem;
+}
+input[type = profile]{
+    border:1px #fff;
+    border-radius: 0.2rem;
+    margin-left: 0.4rem;
+}
+input[type =emails]{
+    border:1px #fff;
+    border-radius: 0.2rem;
+    margin-left: 2.5rem;
+}
+input[type =tel]{
+    border:1px #fff;
+    border-radius: 0.2rem;
+    margin-left: 2rem;
+}
+input[type = addr]{
+    border:1px #fff;
+    border-radius: 0.2rem;
+    margin-left: 1.2rem;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    
+}
+.button-save{
+    width: 3rem;
+    height: 2rem;
+    padding: 0.4rem 0 0 0.5rem;
+    border:1px #633D19;
+    border-radius: 0.2rem;
+    background-color: #633D19;
+    color: #fff;
+}
+.button-cancle{
+    width: 3.4rem;
+    height: 2rem;
+    padding: 0.4rem 0.4rem 0 0;
+    border:1px #633D19;
+    border-radius: 0.2rem;
+    background-color: #633D19;
+    color: #fff;
 }

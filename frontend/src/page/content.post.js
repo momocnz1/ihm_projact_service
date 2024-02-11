@@ -53,7 +53,7 @@ function Content() {
                 {posts && posts.map(post => (
                     <div key={post.id} className='postcontent' >
                         <p >{post.user.username}</p>
-                        <p >{post.content}</p>
+                        <div className='postcontenttext' >{post.content}</div>
                         <ul className='Commentcontent'>
                             {post.comments && post.comments.map(comment => (
                                 <div key={comment.id} className='commentcontent'>
