@@ -8,6 +8,8 @@ import User from 'src/entities/user';
 import { JwtModule, JwtModuleOptions } from '@nestjs/jwt';
 //import { jwtConstants } from './constants';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import Admin from 'src/entities/admin';
+import AdminsService from 'src/users/admin.service';
 
 @Module({
   imports: [
@@ -25,9 +27,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
       inject : [ConfigService]
     }),
-    TypeOrmModule.forFeature([User])
+    TypeOrmModule.forFeature([User,Admin])
   ],
-  providers: [AuthService,UsersService],
+  providers: [AuthService,UsersService,AdminsService],
   controllers: [AuthController],
   exports: [AuthService],
 })

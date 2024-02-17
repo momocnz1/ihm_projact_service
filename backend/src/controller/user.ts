@@ -7,11 +7,14 @@ import { Role } from "src/auth/role.enum";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { extname } from "path";
+import { AuthService } from "src/auth/auth.service";
 
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly authService : AuthService,
+    private readonly userService: UserService) {}
   @Delete(":id")
   deleteuserById(@Param('id') id :number) : string{
     console.log(id)
@@ -41,8 +44,10 @@ export class UserController {
 
   @Post()
   @UsePipes(new ValidationPipe())
-  postCreat(@Body() createuserDTO : CreateuserDTO): Promise<User>{
-    return this.userService.creat(createuserDTO)
+  async postCreat(@Body() createuserDTO : CreateuserDTO): Promise<any>{  
+      let user = await this.userService.creat(createuserDTO)
+      return await this.authService.generateToken(user);
+  
   }
 
   @Post(':id')

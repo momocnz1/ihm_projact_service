@@ -1,4 +1,4 @@
-import {  IsAlphanumeric, IsEmail, IsNotEmpty, IsNumber, IsNumberString, IsString, Length, Matches } from 'class-validator'
+import {  IsAlphanumeric, IsEmail, IsNotEmpty, IsNumber, IsNumberString, IsOptional, IsString, Length, Matches, ValidateIf } from 'class-validator'
 
 export class CreateuserDTO{
 
@@ -21,7 +21,9 @@ export class CreateuserDTO{
    
     @IsNotEmpty()
     @IsAlphanumeric()
-    @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/, { message: 'Password must contain at least one digit, one lowercase, and one uppercase letter.' })
+    @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,20}$/, { 
+    message: 'Password must contain at least one digit, one lowercase, and one uppercase letter.' 
+    })
     @Length(8, 20, { message: 'Password must be between 8 and 20 characters.' })
     password: string;
 
@@ -33,6 +35,11 @@ export class CreateuserDTO{
     @IsNotEmpty()
     @IsString()
     address: string;
+
+    
+    @IsString()
+    @IsOptional()
+    roles: string|null; 
     
 }
 export class UpdateuserDTO{
@@ -69,9 +76,8 @@ export class UpdateuserDTO{
     @IsString()
     address: string;
 
-    @IsNotEmpty()
     @IsString()
-    roles: string[];
+    roles: string;
 
     @IsNotEmpty()
     image: string;;
@@ -111,7 +117,12 @@ export class CreateadminDTO{
     address: string;
 
     @IsNotEmpty()
-    image: string;;
+    image: string;
+
+    
+    @IsNotEmpty()
+    @IsString()
+    roles: string; 
 }
 export class UpdateadminDTO{
 
@@ -147,7 +158,12 @@ export class UpdateadminDTO{
     address: string;
 
     @IsNotEmpty()
-    image: string;;
+    image: string;
+
+    
+    @IsNotEmpty()
+    @IsString()
+    roles: string; 
 }
 export class CreatepostDTO{
     
@@ -180,7 +196,7 @@ export  class UpdateCommentDTO{
     content: string;
 }
 
-export default class CreatePostNotification{
+export class CreatePostNotification{
     @IsNotEmpty()
     @IsString()
     title:string;

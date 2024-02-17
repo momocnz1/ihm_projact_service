@@ -14,10 +14,11 @@ export default function Profile() {
       try {
         const token = localStorage.getItem('token');
         const decodedToken = jwtDecode(token);
-        const userId = decodedToken.sub;
+        const userId = decodedToken.id;
         // console.log(userId)
         // console.log(decodedToken)
-        const response = await axios.get('http://localhost:8000/user/'
+        if (decodedToken.roles && decodedToken.roles.includes('admin')) {
+          const response = await axios.get('http://localhost:8000/admin/'
           + userId, {
           headers: {
             Authorization: 'Bearer ' + token
@@ -27,6 +28,17 @@ export default function Profile() {
         // console.log(localStorage)
         // console.log(response.data)
         setprofile(response.data);
+        } else{
+        const response = await axios.get('http://localhost:8000/user/'
+          + userId, {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+
+        });
+        // console.log(localStorage)
+        // console.log(response.data)
+        setprofile(response.data);}
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -43,7 +55,7 @@ export default function Profile() {
     try {
       const token = localStorage.getItem('token');
       const decodedToken = jwtDecode(token);
-      const userId = decodedToken.sub;
+      const userId = decodedToken.id;
 
       const response = await axios.put(`http://localhost:8000/user/${userId}`, profile, {
         headers: {
@@ -121,7 +133,13 @@ export default function Profile() {
               <p><strong>Email : </strong>{profile.email}</p>
               <p><strong>Phone : </strong>{profile.phone}</p>
               <p><strong>Address : </strong>{profile.address}</p>
-              <button onClick={handleEdit}>Edit</button>
+              <div style={{ 
+              fontSize: ' 15px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+               }}>
+              <button onClick={handleEdit} className='buttom-edit'>Edit</button></div>
             </div>)}
             </div>
           )}

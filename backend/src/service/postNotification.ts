@@ -1,15 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Not, Repository } from 'typeorm';
 import PostNotification from '../entities/postNotification';
-import CreatePostNotification from '../ihm/ihm.dto';
+import { CreateCommentDTO, CreatePostNotification, CreatepostDTO } from 'src/ihm/ihm.dto';
 import User from '../entities/user';
+import Admin from '../entities/admin';
+import Post from 'src/entities/post';
+import UserService from './user';
 
 @Injectable()
  export default class PostNotificationService {
    constructor(
      @InjectRepository(PostNotification)
      private notificationRepository: Repository<PostNotification>,
+    //  private adminService: AdminService,
+    @InjectRepository(Admin)
+     private adminRepository : Repository<Admin>,
+     @InjectRepository(Post)
+     private postRepository: Repository<Post>,
+     private userService : UserService
    ) {}
    getstatus() : string{
      return "OK";
@@ -20,16 +29,131 @@ import User from '../entities/user';
    findOne(id : number) : Promise<PostNotification | null>{
      return this.notificationRepository.findOneBy({id:id});
    }
-   async DeleteQuryBuilder(id: number) : Promise<void>{
+   getAdminNotifications(): Promise<PostNotification[]> {
+    return this.notificationRepository.find({
+      relations:['post','user'],
+      where: {
+        admin:{
+          id : Not(IsNull())
+        } 
+      },
+    });
+  }
+  getAdminNotificationByID(id:number): Promise<PostNotification[]> {
+    return this.notificationRepository.find({
+      relations:['post','user'],
+      where: {
+        admin:{
+          id : id
+        } 
+      },
+    });
+  }
+  async getNotificationsForUser(): Promise<PostNotification[]> {
+    return this.notificationRepository.find({
+      where: {
+        user: Not(IsNull()),
+        admin: IsNull()
+      },
+    });
+  }
+  async getNotificationforUserById(id:number): Promise<PostNotification[]> {
+    return this.notificationRepository.find({
+      where: {
+        user: {
+          id : id
+        },
+        admin: IsNull()
+      }
+    });
+  }
+  async DeleteQuryBuilder(id: number) : Promise<void>{
      await this.notificationRepository.delete({id:id})
+  }
+  async create(postNotification : CreatePostNotification) : Promise<PostNotification | null>{
+    
+    const notification = this.notificationRepository.create({
+      ...postNotification,
+      date: new Date(),
+    });
+    return notification
    }
-   create(postNotification : CreatePostNotification) : Promise<PostNotification | null>{
-    return this.notificationRepository.save(postNotification)
-   }
-   async sendNotificationToUser(user: User,message: string): Promise<void> {
-    //const message = "This is a general notification for you.";
+
+   async sendNotificationToPostUser(id:number, post : Post,isPostDeleted = false) {
+    try {
+        const user = await this.userService.findById(id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        const title = "Warning!!!!!!!!!!!!!!!!!!!!!!!";
+        const content = `Your posthas been deleted.`;
+        const notification = new PostNotification();
+          notification.title = title;
+          notification.content = content;
+          notification.date = new Date();
+      notification.user = await this.userService.findById(id); // เชื่อมต่อกับผู้ใช้ที่ได้รับการแจ้งเตือน
+      
+      await this.notificationRepository.save(notification);
+        // ส่งการแจ้งเตือนไปยังผู้ใช้ (ในที่นี้เราแค่ console.log ออกมาเพื่อทดสอบเท่านั้น)
+        console.log(`Notification sent to user ${user.username}: ${JSON.stringify(notification)}`);    } catch (error) {
+        console.error('Error sending notification to user:', error);
+        throw error;
+    }
+}
+    async sendNotificationToUser(user: User,commentDTO:CreateCommentDTO,post: Post){
+    const title = `New comment on "${post.content}"`;
+    const message = `${user.username} commented : "${commentDTO.content}"`;
+    const noti = new PostNotification()
+    noti.user = post.user;
+    noti.title = title;
+    noti.content = message;
+    noti.date = new Date();
+    noti.post = await this.postRepository.findOne({ where: { id: post.id } })
+    await noti.save()
+    console.log(noti)
     console.log(`Sending notification to user ${user.username}: ${message}`);
    }
+   
+   async sendPostNotificationToAdmin(post:Post,user:User){
+    const title = `New comment on "${post.content}"`;
+    const message = "This potts contains bad words.";
+    const Admins: Admin[] = await this.adminRepository.find();
+    for (const admin of Admins) {
+    const Notification = new PostNotification()
+    Notification.admin = admin;
+    Notification.title = title;
+    Notification.content = message;
+    Notification.date = new Date();
+    Notification.post = await this.postRepository.findOne({ where: { id: post.id } })
+    await Notification.save()
+    console.log(Notification)
+    }
+    console.log(`Sending notification to admin : ${message}`);
+
+   }
+
+   async sendPostNotificationToAdmincomment(post:Post,user:User){
+    const title = `Profanity Violation`;
+    const message = `This potts contains bad words :"${post.content}"`;
+    const Admins: Admin[] = await this.adminRepository.find();
+    for (const admin of Admins) {
+    const Notification = new PostNotification()
+    Notification.admin = admin;
+    Notification.title = title;
+    Notification.content = message;
+    Notification.date = new Date();
+    Notification.user = user;
+    Notification.post = await this.postRepository.findOne({ where: { id: post.id } })
+    await Notification.save()
+    // console.log('Parent ID:', Notification.parentId);
+    console.log(Notification)
+    console.log('user : ',user)
+    }
+    console.log(`Sending notification to admin : ${message}`);
+
+   }
+   //noti.admin = await this.adminRepository.findOne({ where: { id: admin.id } })
+
    //Warning
    async sendDeletionNotificationToUser(user: User): Promise<void> {
     const title = "Warning!!!!!!!!!!!!!!!!!!!!!!!";

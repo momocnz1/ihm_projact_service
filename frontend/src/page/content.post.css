@@ -11,8 +11,10 @@
 .postcontent p{
     width: 7rem;
     height: 2rem;
+    padding-top: 0.2rem;
     padding-left: 1rem;
     border-radius: 2px;
+    border-bottom: #D9D9D9;
     background-color: #D9D9D9;
 }
 
@@ -25,13 +27,9 @@
     color: #161616;
 }
 .postcontent{
-    
     justify-content: center;
-    
-    width: 80vh;
     justify-content: center;
     align-items: center;
-
     border-radius: 2rem;
     background-color: #fff;
     padding: 1rem 3rem 3rem  3rem;
@@ -73,4 +71,45 @@ input[ type = comment]{
     border: #c2A891;
     border-radius: 0.2rem;
     background-color: #c2A891;
+}
+.send{
+    width: 3.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-self: flex-end;
+    margin-left: 28rem;
+    margin-top: 0.4rem;
+    color: #FFFFFF;
+    padding-top: 0.3rem;
+    background-color: #633D19;
+    border: 0.01px solid #633D19;
+    border-radius: 0.3rem;
+}
+.ShowAllcomment{
+    border: none;
+    background-color: #fff;
+    color: #633D19;
+    cursor: pointer;
+}
+.likebuttom{
+    width: 0.6rem;
+    height: 1.6rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-image: url('../icon/heart.png');
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding-left: 1.4rem;
+    border: none;
+    background-color: #fff;
+}
+.likes{
+    margin: 0.3rem;
+    font-size: 13.5px;
+}
+.likebuttom.liked{
+    background-image: url('../icon/heart\ \(1\).png');
 }

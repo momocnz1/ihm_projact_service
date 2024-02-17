@@ -10,9 +10,9 @@ import { AuthProvider } from './auth/AuthContext'
 import Header from './component/header'
 import Post from'./page/post'
 import Profile from './page/profile'
+import PostDetails from './page/content.search';
 
 function App() {
-
   return (
     <AuthProvider>
       <div className="App">
@@ -27,6 +27,7 @@ function App() {
             <Route path="/notification" element={<Notification />} />
             <Route path='/post' element={<Post />}/>
             <Route path='/profile' element={<Profile/>}/>
+            <Route path="/post/:postId" element={<PostDetails />} />
           </Routes>
           
         </Router>

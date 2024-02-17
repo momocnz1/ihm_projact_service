@@ -1,0 +1,27 @@
+.likes{
+    margin: 0.3rem;
+    font-size: 13.5px;
+}
+.likebuttom.liked{
+    background-image: url('../icon/heart\ \(1\).png');
+}
+.likebuttom{
+    width: 0.6rem;
+    height: 1.6rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    background-image: url('../icon/heart.png');
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding-left: 1.4rem;
+    border: none;
+    background-color: #fff;
+}
+.postcardcontent{
+    border: 1px solid #000;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+}

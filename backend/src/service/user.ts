@@ -42,6 +42,7 @@ import PostService from './post';
 
     async creat(user : CreateuserDTO) : Promise<User | null>{
       try{
+        user.roles = 'user';
         const errors = await validate(user);
         if(errors.length > 0 ){
           const errorMessage = errors.map(error => Object.values(error.constraints).join(', ')).join(', ');
@@ -54,6 +55,8 @@ import PostService from './post';
         else{
           console.log('Validation successful');
         }
+        
+        console.log('role',user.roles)
         return await this.userRepository.save(user);
       }
       catch (error) {
@@ -98,7 +101,7 @@ import PostService from './post';
        usertoUpdate.password = update.password;
        usertoUpdate.phone = update.phone;
        usertoUpdate.address = update.address;
-       usertoUpdate.roles = update.roles;
+       usertoUpdate.roles = 'user';
        return await this.userRepository.save(usertoUpdate);
      }
      

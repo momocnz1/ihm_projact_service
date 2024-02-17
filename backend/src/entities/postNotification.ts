@@ -1,29 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm"
 import User from "./user";
 import Admin from "./admin";
 import Post from "./post";
 
 @Entity()
-export default class PostNotification {
+export default class PostNotification extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
-
+    
+    @Column()
+    title: string;
+    
     @Column()
     content: string;
 
     @Column()
-    title: string;
-
-    @Column()
     date: Date;
 
-    @ManyToOne(() => User)
+    @Column({ default: false })
+    isApproved: boolean;
+
+    @ManyToOne(() => User,{ onDelete: 'CASCADE' })
     user: User;
 
-    @ManyToOne(() => Admin)
+    @ManyToOne(() => Admin,{ onDelete: 'CASCADE' })
     admin: Admin;
 
-    @ManyToOne(() => Post)
+    @ManyToOne(() => Post,{ onDelete: 'CASCADE' })
     post: Post;
 
 }

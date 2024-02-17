@@ -55,3 +55,13 @@ input[type = addr]{
     background-color: #633D19;
     color: #fff;
 }
+.buttom-edit{
+    width: 4rem;
+    height: 2rem;
+    padding: 0rem 0.4rem 0 0;
+    border:1px #633D19;
+    border-radius: 0.2rem;
+    background-color: #633D19;
+    color: #fff;
+    
+}

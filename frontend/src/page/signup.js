@@ -24,7 +24,11 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8000/user', user);
+            const response = await axios.post('http://localhost:8000/user', user,{
+                headers:{
+                    Authorization: 'Bearer '+ localStorage.getItem('token')
+                }
+            });
             console.log('User created:', response.data);
             registerUser(response.data.username);
             navigate('/home');
@@ -45,23 +49,23 @@ const Signup = () => {
 
                     <div className='Fname'>
                         <label style={{ fontStyle: 'italic' }}> Fristname </label>
-                        <input type="Fname" name="fname" value={user.fname} onChange={handleChange} placeholder="fristname" required />
+                        <input type="Fname" name="fname" value={user.fname} onChange={handleChange} placeholder="fristname"  />
                     </div>
                     <div className='Lname'>
                         <label style={{ fontStyle: 'italic' }}> Lastname </label>
-                        <input type="Lname" name="lname" value={user.lname} onChange={handleChange} placeholder="lastname" required />
+                        <input type="Lname" name="lname" value={user.lname} onChange={handleChange} placeholder="lastname" />
                     </div>
                     <div className='username'>
                         <label style={{ fontStyle: 'italic' }}> Username </label>
-                        <input type="username" name="username" value={user.username} onChange={handleChange} placeholder="username" required />
+                        <input type="username" name="username" value={user.username} onChange={handleChange} placeholder="username"  />
                     </div>
                     <div className='passwords'>
                         <label style={{ fontStyle: 'italic' }}> Password </label>
-                        <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="password" required />
+                        <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="password"  />
                     </div>
                     <div className='email'>
                         <label style={{ fontStyle: 'italic' }}> Email </label>
-                        <input type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" required />
+                        <input type="email" name="email" value={user.email} onChange={handleChange} placeholder="email" />
                     </div>
                     <div className='phone'>
                         <label style={{ fontStyle: 'italic' }}> Phone </label>

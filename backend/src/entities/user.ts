@@ -31,10 +31,10 @@ export default class User {
     @Column("blob", { nullable: true })
     profileImage: string;  
 
-    @Column({ type: 'json', nullable: true })
-    roles: string[]; 
+    @Column({ nullable: true })
+    roles: string; 
     
-    @OneToMany(() => PostNotification, (notification) => notification.user)
+    @OneToMany(() => PostNotification, (notification) => notification.user,{ onDelete: 'CASCADE' })
     notifications: PostNotification[];
 
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './navbar.css'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import Search from './Search';
 
 function Navbar() {
   const { loggedInUsername,logout } = useAuth();
@@ -13,7 +14,9 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className='home-text' style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '24px' }}>Talk about me</div>
-      <input type='text'></input>
+      <div className="navbar-right" style={{marginBottom:0}}>
+        <Search /></div>
+        
       <div>
         {loggedInUsername ? (
           <div className='dropdown'>

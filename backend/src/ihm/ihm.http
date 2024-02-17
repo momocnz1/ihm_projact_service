@@ -9,7 +9,7 @@ GET {{baseUrl}}/
 GET {{baseUrl}}/user
 ###
 
-POST {{baseUrl}}/user/1
+POST {{baseUrl}}/user
 Content-Type: application/json
 
 {
@@ -30,22 +30,21 @@ Content-Type: application/json
 }
 ###
 
-PUT {{baseUrl}}/user/6
+PUT {{baseUrl}}/user/14
 Content-Type: application/json
 
 {
-    "fname": "Taehyung",
-    "lname": "Kim",
-    "username" : "K.taehyung",
-    "email": "kim.taehyung@example.com",
-    "password" : "kt1995",
-    "phone": "0873489327",
-    "address": "123 Main St, Cityville",
-    "roles" : "user"
+    "fname": "憂太",
+    "lname": "乙 骨",
+    "username" : "yuta okkotsu",
+    "email": "Yuta.O@xample.com",
+    "password" : "Yutasohansome1",
+    "phone": "0897564325",
+    "address": "123 Main St, Cityville"
 }
 ###
 
-DELETE {{baseUrl}}/user/12
+DELETE {{baseUrl}}/user/18
 
 ###
 GET {{baseUrl}}/admin
@@ -65,17 +64,17 @@ Content-Type: application/json
 }
 
 ###
-PUT {{baseUrl}}/admin/3
+PUT {{baseUrl}}/admin/1
 Content-Type: application/json
 
 {
-    "fname": "Jungkook",
-    "lname": "Jeon",
-    "username" : "J.jungkook",
-    "email": "jeon.jungkook@example.com",
-    "password" : "jj1997",
+    "fname": "ศิวกร",
+    "lname": "อดุลสุทธิกุล",
+    "username" : "admin1",
+    "email": "A.sivakorn@example.com",
+    "password" : "Sivk0705",
     "phone": "0871236327",
-    "address": "123 Main St, Cityville",
+    "address": "123 Main St, Cityville"
     
 }
 ###
@@ -98,7 +97,7 @@ Content-Type: application/json
     "content": "เชี่ย อคคตสึ ยูตะหร่อชิบหาย"
 }
 ###
-DELETE {{baseUrl}}/post/58
+DELETE {{baseUrl}}/post/1
 ###
 
 GET {{baseUrl}}/post/2/comment
@@ -110,11 +109,11 @@ Content-Type: application/json
     "content":"จริงคั้บ"
 }
 ###
-PUT {{baseUrl}}/post/19828/comment/19848
+PUT {{baseUrl}}/post//comment/
 Content-Type: application/json
 
 { 
-    "content":"จริงคั้บ"
+    "content":"สวัสดีวันศุกร์"
 }
 ###
 
@@ -125,8 +124,8 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "usernameOrEmail" : "min.yunggi@example.com",
-    "password" : "my1993"
+    "usernameOrEmail" : "porsche.sivk",
+    "password" : "Sivk0705"
 }
 
 
@@ -153,3 +152,13 @@ Authorization: Bearer
 GET {{baseUrl}}/only-admin
 Content-Type: application/json
 Authorization: Bearer
+
+###
+GET {{baseUrl}}/Notification/admin/Notification/1
+
+###
+GET {{baseUrl}}/Notification/user/Notification/6
+###
+
+GET {{baseUrl}}/post/search/สวัสดีครับ
+###

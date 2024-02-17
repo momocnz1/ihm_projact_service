@@ -28,7 +28,9 @@ const Login = () => {
       login(response.data.access_token);
       navigate('/home');
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
+      if (error.response && error.response.status === 401) {
+        setErrorMessage('รหัสผ่านหรือชื่อผู้ใช้ไม่ถูกต้อง');
+      } else if (error.response && error.response.data && error.response.data.message) {
         setErrorMessage(error.response.data.message);
       } else {
         setErrorMessage('เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
@@ -44,8 +46,8 @@ const Login = () => {
   }, []);
 
   const handleSignupClick = () => {
-    setSignupLinkColor('red');
-    localStorage.setItem('signupLinkColor', 'red');
+    setSignupLinkColor('blue');
+    localStorage.setItem('signupLinkColor', 'blue');
   };
 
   useEffect(() => {

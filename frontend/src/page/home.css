@@ -56,3 +56,31 @@
 .Popular{
     text-align: center;
 }
+.Postcontent{
+    max-width: calc(100% - 01rem);
+    height: calc(100% - 1rem);
+}
+
+.post-card {
+    flex: 0 0 calc(20% - 0.1rem); 
+    margin: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;    
+}
+
+.first-in-row {
+    margin-left: 0  ; /* กำหนดให้โพสต์แรกในแถวไม่มี margin ด้านซ้าย */
+}
+.New{
+    text-align: center;
+}
+.showwMore{
+    height: 2rem;
+    width: 5rem;
+    border: none;
+    background-color: #633D19;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.2rem;
+    justify-content: center;
+}
