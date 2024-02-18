@@ -3,9 +3,11 @@
 }
 .usernamecomment{
     font-Size:12px;
+    margin: 0; 
 }
 .connetcomment{
     font-Size:16px;
+    margin: 0; 
 
 }
 .postcontent p{
@@ -38,6 +40,9 @@
 .Commentcontent{
     /* background-color: #c2A891; */
     padding-left: 1rem;
+    flex-direction: column;
+    display: flex;
+
 }
 .commentcontent{
     font-size: 15px;
@@ -48,6 +53,8 @@
     padding: 0.3rem 0 0 1rem;
     border-radius: 0.2rem;
     background-color: #c2A891;
+    flex-direction: column;
+    display: flex;
 }
 .Creatpost{
     width: 1rem;

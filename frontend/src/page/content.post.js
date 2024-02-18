@@ -72,13 +72,13 @@ function Post({_post, afterSubmit}) {
             {showAllComments 
                 ? post.comments && post.comments.map(comment => (
                     <div key={comment.id} className='commentcontent'>
-                            <div className='usernamecomment' style={{margin:'0.2rem',}}>{comment.user.username}
+                            <div className='usernamecomment' >{comment.user.username}
                             <div className='connetcomment' >{comment.content}</div>
                         </div>
                     </div>
                 )) : post.comments.slice(0, 5).map(comment => (
                     <div key={comment.id} className='commentcontent'>
-                        <div className='usernamecomment' style={{margin:'0.2rem',}}>{comment.user.username}</div>
+                        <div className='usernamecomment'>{comment.user.username}</div>
                         <div className='connetcomment' >{comment.content}</div>
                     </div>
                 ))

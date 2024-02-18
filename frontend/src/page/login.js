@@ -4,10 +4,12 @@ import './login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
+
+
 const Login = () => {
   const [credentials, setCredentials] = useState({ usernameOrEmail: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
-  const [signupLinkColor, setSignupLinkColor] = useState(''); // สีของลิงก์ "Signup"
+  const [signupLinkColor, setSignupLinkColor] = useState(''); 
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -23,7 +25,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8000/auth/login', credentials);
+      const response = await axios.post('http://localhost:8000/auth/login', credentials
+);
       console.log(response.data);
       login(response.data.access_token);
       navigate('/home');
@@ -34,6 +37,7 @@ const Login = () => {
         setErrorMessage(error.response.data.message);
       } else {
         setErrorMessage('เกิดข้อผิดพลาดในการเข้าสู่ระบบ');
+        console.log(error.response.data.message)
       }
     }
   };

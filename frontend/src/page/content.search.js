@@ -28,6 +28,13 @@ function PostDetails() {
     fetchPostDetails();
   }, [postId]);
 
+  const loadPostById = async () => {
+    const postresult = await axios.get(`http://localhost:8000/post/${post.id}/`)
+    console.log(postresult)
+    setPost(postresult.data)
+    
+}
+
   const handleNewCommentSubmit = async () => {
     try {
       const response = await axios.post(`http://localhost:8000/post/${postId}/comment`, {
@@ -40,6 +47,7 @@ function PostDetails() {
       const newCommentData = response.data;
       setComments([...comment, newCommentData]);
       setNewComment('');
+      await loadPostById()    
     } catch (error) {
       console.error('Error adding new comment:', error);
     }
@@ -85,7 +93,7 @@ function PostDetails() {
       </div>
       <div className='NewComment'>
         <input value={newComment} onChange={e => setNewComment(e.target.value)} className='newComment'/>
-        <button onClick={handleNewCommentSubmit} className='Addcommet'>Add Comment</button>
+        <button onClick={() => handleNewCommentSubmit(post.id)} className='Addcommet'>Add Comment</button>
       </div>
     </div>
   );

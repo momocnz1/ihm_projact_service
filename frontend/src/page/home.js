@@ -50,7 +50,7 @@ console.log(sortedPostsLike)
                   <div key={post.id} className="post-card">
                   <div> <PostCard post={post} /></div>
                   </div>
-            )) : posts.slice(0,3).map((post) => (
+            )) : posts.slice(0,4).map((post) => (
               <div key={post.id} className="post-card" >
               <PostCard post={post} />
               </div>
@@ -59,7 +59,7 @@ console.log(sortedPostsLike)
           
           }</div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            { posts.length > 3 && (
+            { posts.length > 4 && (
                 <button className='showwMore' onClick={() => setShowMore(!showMore)}>
                   {showMore ?  "Hide" : "Show More"}
                 </button>
@@ -75,7 +75,7 @@ console.log(sortedPostsLike)
                   <div key={post.id} className="post-card">
                   <div> <PostCard post={post} /></div>
                   </div>
-            )) : posts.slice(0,3).map((post) => (
+            )) : posts.slice(0,4).map((post) => (
               <div key={post.id} className="post-card" >
               <PostCard post={post} />
               </div>
@@ -84,7 +84,7 @@ console.log(sortedPostsLike)
           
           }</div>
          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            { posts.length > 3 && (
+            { posts.length > 4 && (
                 <button className='showwMore' onClick={() => setShowMore(!showMore)}>
                   {showMore ?  "Hide" : "Show More"}
                 </button>
