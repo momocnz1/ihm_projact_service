@@ -37,7 +37,7 @@ const Signup = () => {
         }
     };
     const handleClose = () => {
-        navigate('/');
+        navigate('/home');
         console.log('Close button clicked');
     };
     return (
