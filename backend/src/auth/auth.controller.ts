@@ -30,6 +30,7 @@ export class AuthController {
       return { message: 'Invalid credentials' };
     }
   }
+  
   @Post('logout')
   async logout(@Req() req) {
     await this.authService.logout(req.user);

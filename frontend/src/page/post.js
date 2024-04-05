@@ -47,9 +47,7 @@ export default function Post() {
                         className='Howyoufell'
                 />                
                 
-                <div>
-                    <button className='imagesplus'>  photo</button>
-                </div>
+               
                 <button className='creatPs' style={{ 
                     fontWeight: 'bold', 
                     fontStyle: 'italic', 

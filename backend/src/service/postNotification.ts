@@ -91,27 +91,26 @@ import UserService from './user';
           notification.title = title;
           notification.content = content;
           notification.date = new Date();
-      notification.user = await this.userService.findById(id); // เชื่อมต่อกับผู้ใช้ที่ได้รับการแจ้งเตือน
+          notification.user = await this.userService.findById(id); 
       
       await this.notificationRepository.save(notification);
-        // ส่งการแจ้งเตือนไปยังผู้ใช้ (ในที่นี้เราแค่ console.log ออกมาเพื่อทดสอบเท่านั้น)
         console.log(`Notification sent to user ${user.username}: ${JSON.stringify(notification)}`);    } catch (error) {
         console.error('Error sending notification to user:', error);
         throw error;
     }
 }
     async sendNotificationToUser(user: User,commentDTO:CreateCommentDTO,post: Post){
-    const title = `New comment on "${post.content}"`;
-    const message = `${user.username} commented : "${commentDTO.content}"`;
-    const noti = new PostNotification()
-    noti.user = post.user;
-    noti.title = title;
-    noti.content = message;
-    noti.date = new Date();
-    noti.post = await this.postRepository.findOne({ where: { id: post.id } })
-    await noti.save()
-    console.log(noti)
-    console.log(`Sending notification to user ${user.username}: ${message}`);
+      const title = `New comment on "${post.content}"`;
+      const message = `${user.username} commented : "${commentDTO.content}"`;
+      const noti = new PostNotification()
+      noti.user = post.user;
+      noti.title = title;
+      noti.content = message;
+      noti.date = new Date();
+      noti.post = await this.postRepository.findOne({ where: { id: post.id } })
+      await noti.save()
+      console.log(noti)
+      console.log(`Sending notification to user ${user.username}: ${message}`);
    }
    
    async sendPostNotificationToAdmin(post:Post,user:User){
@@ -152,9 +151,7 @@ import UserService from './user';
     console.log(`Sending notification to admin : ${message}`);
 
    }
-   //noti.admin = await this.adminRepository.findOne({ where: { id: admin.id } })
-
-   //Warning
+  
    async sendDeletionNotificationToUser(user: User): Promise<void> {
     const title = "Warning!!!!!!!!!!!!!!!!!!!!!!!";
     const message = `Your posthas been deleted.`;

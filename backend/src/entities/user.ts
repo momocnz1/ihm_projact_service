@@ -34,7 +34,7 @@ export default class User {
     @Column({ nullable: true })
     roles: string; 
     
-    @OneToMany(() => PostNotification, (notification) => notification.user,{ onDelete: 'CASCADE' })
+    @OneToMany(() => PostNotification, (notification) => notification.user)
     notifications: PostNotification[];
 
 }

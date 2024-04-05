@@ -20,13 +20,13 @@ export default class PostNotification extends BaseEntity{
     @Column({ default: false })
     isApproved: boolean;
 
-    @ManyToOne(() => User,{ onDelete: 'CASCADE' })
+    @ManyToOne(() => User)
     user: User;
 
-    @ManyToOne(() => Admin,{ onDelete: 'CASCADE' })
+    @ManyToOne(() => Admin)
     admin: Admin;
 
-    @ManyToOne(() => Post,{ onDelete: 'CASCADE' })
+    @ManyToOne(() => Post)
     post: Post;
 
 }

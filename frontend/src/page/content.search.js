@@ -58,7 +58,7 @@ function PostDetails() {
     <div className='postConTent'>
       {post && (
         <div className='poSt'>
-            <div className='Postusername'><p>Posted by: {post.user.username}</p></div>
+            <div className='Postusername'><p>{post.user.username}</p></div>
                 <div className='PostContent'>{post.content}</div>
         </div>
       )}

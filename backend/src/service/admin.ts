@@ -8,7 +8,6 @@ import Post from 'src/entities/post';
 import PostNotificationService from './postNotification';
 
 
-//ฟังก์ชั่นมีปหใมาแก้ด้วย 152
 @Injectable()
  export default class AdminService{
    constructor(
@@ -63,31 +62,6 @@ import PostNotificationService from './postNotification';
        console.log('Admin not found after deletion')
      }
    }
-  
-
-// async rejectPost(postId) {
-//     try {
-//         // ดึงข้อมูลโพสต์จากฐานข้อมูล
-//         const post = await this.postRepository.findOne(postId);
-        
-//         // ตรวจสอบว่าโพสต์มีอยู่จริงหรือไม่
-//         if (!post) {
-//             throw new Error('Post not found');
-//         }
-
-//         // ลบโพสต์
-//         await this.postRepository.delete(postId);
-        
-//         // ส่งการแจ้งเตือนไปยังผู้ใช้
-//         await this.postNotificationService.sendNotificationToPostUser(post.user.id, 'Your post has been rejected.');
-
-//         // สามารถเพิ่มการดำเนินการอื่น ๆ ตามต้องการ
-//     } catch (error) {
-//         console.error('Error rejecting post:', error);
-//         throw error;
-//     }
-// }
-
   
    async isAdmin(id: number): Promise<boolean> {
     const user = await this.adminRepository.findOne({where : {id: id}});

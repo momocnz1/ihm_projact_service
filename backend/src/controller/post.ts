@@ -75,6 +75,18 @@ export default class PostController {
     }
 
     @UseGuards(AuthGuard)
+    @Post()
+    async postCreat(@Request() req, @Body() createpostDTO: CreatepostDTO,): Promise<PostEntity | ReviewMessage> {
+        //return this.postService.createPost(createpostDTO)
+        let user = req.user;
+        const result = await this.postService.createPost(createpostDTO, user);
+        if ('message' in result) {
+            return { message: result.message };
+        }
+        return result as PostEntity;
+    }
+
+    @UseGuards(AuthGuard)
     @Put(':id')
     async updatePost(
         @Param('id') id: number,
@@ -88,19 +100,6 @@ export default class PostController {
         }
         return result as PostEntity;
     }
-
-    @UseGuards(AuthGuard)
-    @Post()
-    async postCreat(@Request() req, @Body() createpostDTO: CreatepostDTO,): Promise<PostEntity | ReviewMessage> {
-        //return this.postService.createPost(createpostDTO)
-        let user = req.user;
-        const result = await this.postService.createPost(createpostDTO, user);
-        if ('message' in result) {
-            return { message: result.message };
-        }
-        return result as PostEntity;
-    }
-
     @Delete(":id")
     deletepostById(@Param('id') id: number): string {
         this.postService.DeleteQuryBuilder(id)

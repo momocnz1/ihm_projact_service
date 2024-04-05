@@ -58,24 +58,24 @@ export class UserController {
 
 
 
-  @Post(':id/profile-image')
-  @UseInterceptors(FileInterceptor('profileImage', {
-    storage: diskStorage({
-      destination: './uploads', // ตำแหน่งที่ไฟล์จะถูกบันทึก
-      filename: (req, file, cb) => {
-        // กำหนดชื่อไฟล์ใหม่โดยใช้ timestamp และส่วนขยายไฟล์เดิม
-        const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('');
-        return cb(null, `${randomName}${extname(file.originalname)}`);
-      },
-    }),
-    fileFilter: (req, file, cb) => {
-      // ตรวจสอบประเภทของไฟล์ที่อัปโหลดเพื่อให้ยอมรับเฉพาะไฟล์รูปภาพเท่านั้น
-      if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-        return cb(new BadRequestException('Only image files are allowed!'), false);
-      }
-      cb(null, true);
-    },
-  }))
+  // @Post(':id/profile-image')
+  // @UseInterceptors(FileInterceptor('profileImage', {
+  //   storage: diskStorage({
+  //     destination: './uploads', // ตำแหน่งที่ไฟล์จะถูกบันทึก
+  //     filename: (req, file, cb) => {
+  //       // กำหนดชื่อไฟล์ใหม่โดยใช้ timestamp และส่วนขยายไฟล์เดิม
+  //       const randomName = Array(32).fill(null).map(() => (Math.round(Math.random() * 16)).toString(16)).join('');
+  //       return cb(null, `${randomName}${extname(file.originalname)}`);
+  //     },
+  //   }),
+  //   fileFilter: (req, file, cb) => {
+  //     // ตรวจสอบประเภทของไฟล์ที่อัปโหลดเพื่อให้ยอมรับเฉพาะไฟล์รูปภาพเท่านั้น
+  //     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+  //       return cb(new BadRequestException('Only image files are allowed!'), false);
+  //     }
+  //     cb(null, true);
+  //   },
+  // }))
 
 
 

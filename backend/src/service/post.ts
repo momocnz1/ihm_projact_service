@@ -7,7 +7,7 @@ import User from 'src/entities/user';
 import {fetchDataAndPopulateList, profanityList} from 'src/data/read.data';
 import PostNotificationService from './postNotification';
 import PostNotification from 'src/entities/postNotification';
-import { Console } from 'console';
+
 
 type ReviewMessage = {
     message: string;
@@ -90,11 +90,11 @@ export default class PostService {
         await p.save()
         if (await this.hasProfanity(commentDTO.content)) {
             p.isApproved = false; 
-            if (!parentPost.isApproved) {
+            
             await this.notificationService.sendPostNotificationToAdmincomment(p,user);
             
             console.log('parentid',parentPost)
-            }
+            
         }
         console.log('ok',p.id)
         const commenNOtification = await this.notificationService.sendNotificationToUser(user,commentDTO,parentPost)
